@@ -1,10 +1,9 @@
-canv.width = window.innerWidth
-canv.height = window.innerHeight
-ctx = canv.getContext('2d')
-
-dotSize = Math.min(canv.width, canv.height) / 7
-xs = canv.width / 2 - dotSize * 3 + dotSize / 2
-ys = canv.height / 2 - dotSize * 3
+ctx = c
+W = a.width
+H = a.height
+dotSize = Math.min(W, H) / 7
+xs = W / 2 - dotSize * 3 + dotSize / 2
+ys = H / 2 - dotSize * 3
 
 colors = ['#F44336', '#9C27B0', '#2196F3', '#4CAF50', '#FF9800']
 
@@ -47,7 +46,7 @@ for (var x = 0; x < 6; x++) {
 }
 
 render = function() {
-  ctx.clearRect(0, 0, canv.width, canv.height)
+  ctx.clearRect(0, 0, W, H)
 
 
   for (var i = dots.length - 1; i >= 0 ; i--) {
@@ -81,16 +80,16 @@ render = function() {
 
       if (!a.bdown && !a.bup && a.y == a.ty) {
         a.bdown = true
-        a.ty -= dotSize / 2
-        a.tt = dotSize / 3.2
+        a.ty -= dotSize / 3
+        a.tt = dotSize / 5
       } else if (a.bdown && !a.bup && a.y == a.ty) {
         a.bup = true
-        a.tt = dotSize / 30
-        a.ty += dotSize / 2
+        a.tt = dotSize / 15
+        a.ty += dotSize / 3
       }
 
     } else {
-      a.tt = dotSize / 30
+      a.tt = dotSize / 15
       a.bdown = false
       a.bup = false
     }
@@ -124,8 +123,6 @@ render = function() {
   ctx.fillStyle = '#000'
   ctx.fillText('Score: ' + score, xs + dotSize * 3, ys + dotSize * 6)
   ctx.fillText('Time: ' + time, xs, ys + dotSize * 6)
-
-  requestAnimationFrame(render)
 }
 
 isBelow = function (a, b) {
@@ -226,4 +223,4 @@ window.onmousemove = window.ontouchmove = function (e) {
 }
 
 
-requestAnimationFrame(render)
+setInterval(render, 33)
