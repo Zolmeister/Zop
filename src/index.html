@@ -10,6 +10,9 @@
       var b = document.body
       a.width = window.innerWidth
       a.height = window.innerHeight
+      window.onresize = function () {
+        window.location.reload()
+      }
       var c = a.getContext('2d')
     </script>
     <script src="/js"></script>
