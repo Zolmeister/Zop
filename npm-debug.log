@@ -1,0 +1,28 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/zoli/.local/bin/node',
+1 verbose cli   '/home/zoli/.local/bin/npm',
+1 verbose cli   'start' ]
+2 info using npm@1.4.14
+3 info using node@v0.10.29
+4 verbose run-script [ 'prestart', 'start', 'poststart' ]
+5 info prestart zop@0.0.1
+6 info start zop@0.0.1
+7 verbose unsafe-perm in lifecycle true
+8 info zop@0.0.1 Failed to exec start script
+9 error zop@0.0.1 start: `./node_modules/coffee-script/bin/coffee ./bin/server`
+9 error Exit status 1
+10 error Failed at the zop@0.0.1 start script.
+10 error This is most likely a problem with the zop package,
+10 error not with npm itself.
+10 error Tell the author that this fails on your system:
+10 error     ./node_modules/coffee-script/bin/coffee ./bin/server
+10 error You can get their info via:
+10 error     npm owner ls zop
+10 error There is likely additional logging output above.
+11 error System Linux 3.13.0-24-generic
+12 error command "/home/zoli/.local/bin/node" "/home/zoli/.local/bin/npm" "start"
+13 error cwd /home/zoli/zolmeister/zop
+14 error node -v v0.10.29
+15 error npm -v 1.4.14
+16 error code ELIFECYCLE
+17 verbose exit [ 1, true ]

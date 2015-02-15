@@ -17,7 +17,8 @@
     "coffee-script": "^1.9.0"
   },
   "scripts": {
-    "dev": "node_modules/gulp/bin/gulp.js dev"
+    "dev": "node_modules/gulp/bin/gulp.js dev",
+    "start": "node_modules/coffee-script/bin/coffee bin/server.coffee"
   },
   "author": ""
 }
