@@ -5,6 +5,9 @@
   "main": "index.js",
   "dependencies": {
     "express": "^4.11.2",
+    "coffee-script": "^1.9.0"
+  },
+  "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-jscrush": "^1.0.0",
     "gulp-nodemon": "^1.0.5",
@@ -12,9 +15,6 @@
     "map-stream": "0.0.5",
     "webpack": "^1.5.3",
     "webpack-dev-server": "^1.7.0"
-  },
-  "devDependencies": {
-    "coffee-script": "^1.9.0"
   },
   "scripts": {
     "dev": "node_modules/gulp/bin/gulp.js dev",
