@@ -1,6 +1,8 @@
+#!/usr/bin/env coffee
+log = require 'clay-loglevel'
+
 app = require '../server'
+config = require '../src/config'
 
-port = process.env.PORT or 3000
-
-app.listen port, ->
-  console.log 'Listening on port %d', port
+app.listen config.PORT, ->
+  log.info 'Listening on port %d', config.PORT

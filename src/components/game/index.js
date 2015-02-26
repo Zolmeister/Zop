@@ -1,3 +1,23 @@
+var HelloWorld, styles, z;
+
+z = require('zorium');
+
+styles = require('./index.styl');
+
+module.exports = HelloWorld = (function() {
+  function HelloWorld() {
+    styles.use();
+  }
+
+  HelloWorld.prototype.render = function() {
+    return null
+  };
+
+  return HelloWorld;
+
+})();
+
+
 ctx = c
 W = a.width
 H = a.height
