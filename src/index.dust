@@ -64,18 +64,15 @@
       ga('create', 'UA-30570115-17', 'auto');
       ga('send', 'pageview');
     </script>
-    <canvas id="canvas" style="display: block; width: 100%; height: 100%;"></canvas>
     <script>
-      var a = canvas
-      var b = document.body
-      a.width = window.innerWidth
-      a.height = window.innerHeight
-      window.onresize = function () {
-        window.location.reload()
-      }
-      var c = a.getContext('2d')
+      (function(C,l,a,y,_,i,o){C[_]=C[_]||function(){
+      (C[_].q=C[_].q||[]).push(arguments)},C[_].l=1*new Date();i=l.createElement(a),
+      o=l.getElementsByTagName(a)[0];i.async=1;i.src=y;o.parentNode.insertBefore(i,o)
+      })(window,document,'script','//cdn.wtf/sdk/v1/clay_sdk.js','Clay');
+
+      Clay('init', {gameId: '8343'})
     </script>
-    <div id="app"></div>
+    <div id="app" style="display: block; width: 100%; height: 100%;"></div>
     {?inlineSource}
       <script>
         {distjs|s}

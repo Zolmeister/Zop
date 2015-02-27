@@ -6,6 +6,7 @@ log = require 'clay-loglevel'
 
 config = require './config'
 HomePage = require './pages/home'
+GameOverPage = require './pages/game_over'
 ErrorReportService = require './services/error_report'
 
 style = require './root.styl'
@@ -33,6 +34,7 @@ else
 root = document.getElementById('app')
 z.router.setRoot root
 z.router.add '/', HomePage
+z.router.add '/game-over', GameOverPage
 z.router.go()
 
 log.info 'App Ready'

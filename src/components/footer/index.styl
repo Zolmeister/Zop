@@ -1,0 +1,19 @@
+@require 'nib'
+@require 'zorium-paper/base'
+
+json('zorium-paper/colors.json')
+
+.z-footer
+  position: fixed
+  bottom: 0
+  padding-bottom: 10px
+  box-sizing: border-box
+  width: 100%
+  text-align: center
+  z-index: 123
+
+  > .left
+    float: left
+
+  > .right
+    float: right

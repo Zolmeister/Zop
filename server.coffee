@@ -35,10 +35,12 @@ scriptSrc = [
   '\'unsafe-eval\''
   '\'unsafe-inline\''
   'www.google-analytics.com'
+  'cdn.wtf'
   if config.ENV is config.ENVS.DEV then webpackDevHost
 ]
 stylesSrc = [
   '\'unsafe-inline\''
+  'cdn.wtf'
   if config.ENV is config.ENVS.DEV then webpackDevHost
 ]
 app.use helmet.contentSecurityPolicy

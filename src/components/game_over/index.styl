@@ -1,0 +1,36 @@
+@require 'nib'
+@require 'zorium-paper/base'
+
+json('zorium-paper/colors.json')
+
+.z-game-over
+  text-align: center
+  padding: 10px
+
+  > .current-score
+    zp-font-display4()
+    margin-top: 20px
+
+  > .current-label
+    zp-font-headline()
+    color: $black54
+    font-style: italic
+
+  > .divider
+    height: 1px
+    background $grey300
+    margin: 25px 0
+
+  > .best-score
+    zp-font-display2()
+
+  > .best-label
+    zp-font-subhead()
+    color: $black54
+    font-style: italic
+
+  > .buttons
+    position: absolute
+    width: 100%
+    left: 0
+    bottom: 20px
