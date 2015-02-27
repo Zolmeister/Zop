@@ -211,6 +211,7 @@ module.exports = Game = (function() {
     }
 
     window.onmousedown = window.ontouchstart = function (e) {
+      e.preventDefault()
       if (time == 0) return
       isSelecting = true
 
@@ -231,6 +232,7 @@ module.exports = Game = (function() {
     }
 
     window.onmouseup = window.ontouchend = function (e) {
+      e.preventDefault()
       isSelecting = false
       if (selected.length < 2) {
         return selected = []
@@ -271,6 +273,7 @@ module.exports = Game = (function() {
 
     window.onmousemove = window.ontouchmove = onmove
     function onmove (e) {
+      e.preventDefault()
       if (e.pageX) {
         mouseX = e.pageX * RATIO
         mouseY = e.pageY * RATIO
