@@ -141,7 +141,7 @@ module.exports = Game = (function() {
         if (a.y != a.ty) {
           dir = a.y > a.ty ? -1 : 1
           a.y += a.tt * dir
-          a.tt *= a.bdown && !a.bup ? 0.7 : 1.2
+          a.tt *= a.bdown && !a.bup ? 0.6 : 1.3
 
           if (dir == 1 && a.y >= a.ty) {
             a.y = a.ty
@@ -154,12 +154,12 @@ module.exports = Game = (function() {
 
           if (!a.bdown && !a.bup && a.y == a.ty) {
             a.bdown = true
-            a.ty -= dotSize / 3 * 1.5
+            a.ty -= dotSize / 3 * 1.3
             a.tt = dotSize / 5
           } else if (a.bdown && !a.bup && a.y == a.ty) {
             a.bup = true
             a.tt = dotSize / 15
-            a.ty += dotSize / 3 * 1.5
+            a.ty += dotSize / 3 * 1.3
           }
 
         } else {
