@@ -6,6 +6,15 @@ paperColors = require('zorium-paper/colors.json')
 Score = require('../../models/score')
 Footer = require('../footer')
 
+window.requestAnimFrame = (function(){
+  return  window.requestAnimationFrame       ||
+          window.webkitRequestAnimationFrame ||
+          window.mozRequestAnimationFrame    ||
+          function( callback ){
+            window.setTimeout(callback, 1000 / 60);
+          };
+})();
+
 module.exports = Game = (function() {
   var state = z.state({
     $footer: new Footer(),
@@ -17,7 +26,6 @@ module.exports = Game = (function() {
 
   Game.prototype.onBeforeUnmount = function () {
     clearInterval(state().timeInterval)
-    clearInterval(state().renderInterval)
   }
 
   Game.prototype.onMount = function ($$el) {
@@ -186,6 +194,8 @@ module.exports = Game = (function() {
         }
         ctx.stroke()
       }
+
+      window.requestAnimFrame(render)
     }
 
     isBelow = function (a, b) {
@@ -273,7 +283,9 @@ module.exports = Game = (function() {
 
     window.onmousemove = window.ontouchmove = onmove
     function onmove (e) {
-      e.preventDefault()
+      if (e.preventDefault)
+        e.preventDefault()
+
       if (e.pageX) {
         mouseX = e.pageX * RATIO
         mouseY = e.pageY * RATIO
@@ -304,9 +316,7 @@ module.exports = Game = (function() {
       }
     }
 
-    state.set({
-      renderInterval: setInterval(render, 33)
-    })
+    render()
   }
 
   Game.prototype.render = function() {

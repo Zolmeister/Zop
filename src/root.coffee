@@ -35,6 +35,6 @@ root = document.getElementById('app')
 z.router.setRoot root
 z.router.add '/', HomePage
 z.router.add '/game-over', GameOverPage
-z.router.go()
+z.router.go '/'
 
 log.info 'App Ready'
