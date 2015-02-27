@@ -31,21 +31,21 @@ dust.loadSource indexTpl
 app.use compress()
 
 webpackDevHost = config.WEBPACK_DEV_HOSTNAME + ':' + config.WEBPACK_DEV_PORT
-scriptSrc = [
-  '\'unsafe-eval\''
-  '\'unsafe-inline\''
-  'www.google-analytics.com'
-  'cdn.wtf'
-  if config.ENV is config.ENVS.DEV then webpackDevHost
-]
-stylesSrc = [
-  '\'unsafe-inline\''
-  'cdn.wtf'
-  if config.ENV is config.ENVS.DEV then webpackDevHost
-]
-app.use helmet.contentSecurityPolicy
-  scriptSrc: scriptSrc
-  stylesSrc: stylesSrc
+# scriptSrc = [
+#   '\'unsafe-eval\''
+#   '\'unsafe-inline\''
+#   'www.google-analytics.com'
+#   'cdn.wtf'
+#   if config.ENV is config.ENVS.DEV then webpackDevHost
+# ]
+# stylesSrc = [
+#   '\'unsafe-inline\''
+#   'cdn.wtf'
+#   if config.ENV is config.ENVS.DEV then webpackDevHost
+# ]
+# app.use helmet.contentSecurityPolicy
+#   scriptSrc: scriptSrc
+#   stylesSrc: stylesSrc
 app.use helmet.xssFilter()
 app.use helmet.frameguard()
 app.use helmet.hsts
