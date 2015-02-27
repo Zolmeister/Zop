@@ -141,7 +141,7 @@ module.exports = Game = (function() {
         if (a.y != a.ty) {
           dir = a.y > a.ty ? -1 : 1
           a.y += a.tt * dir
-          a.tt *= a.bdown && !a.bup ? 0.5 : 1.5
+          a.tt *= a.bdown && !a.bup ? 0.7 : 1.2
 
           if (dir == 1 && a.y >= a.ty) {
             a.y = a.ty
@@ -154,12 +154,12 @@ module.exports = Game = (function() {
 
           if (!a.bdown && !a.bup && a.y == a.ty) {
             a.bdown = true
-            a.ty -= dotSize / 3
+            a.ty -= dotSize / 3 * 1.5
             a.tt = dotSize / 5
           } else if (a.bdown && !a.bup && a.y == a.ty) {
             a.bup = true
             a.tt = dotSize / 15
-            a.ty += dotSize / 3
+            a.ty += dotSize / 3 * 1.5
           }
 
         } else {
@@ -220,7 +220,9 @@ module.exports = Game = (function() {
              a.c - 1 == b.c && a.r == b.r
     }
 
-    window.onmousedown = window.ontouchstart = function (e) {
+    a.addEventListener('mousedown', touchstart)
+    a.addEventListener('touchstart', touchstart)
+    function touchstart(e) {
       e.preventDefault()
       if (time == 0) return
       isSelecting = true
@@ -241,7 +243,9 @@ module.exports = Game = (function() {
       })
     }
 
-    window.onmouseup = window.ontouchend = function (e) {
+    a.addEventListener('mouseup', touchend)
+    a.addEventListener('touchend', touchend)
+    function touchend(e) {
       e.preventDefault()
       isSelecting = false
       if (selected.length < 2) {
@@ -281,7 +285,8 @@ module.exports = Game = (function() {
       selected = []
     }
 
-    window.onmousemove = window.ontouchmove = onmove
+    a.addEventListener('mousemove', onmove)
+    a.addEventListener('touchmove', onmove)
     function onmove (e) {
       if (e.preventDefault)
         e.preventDefault()
