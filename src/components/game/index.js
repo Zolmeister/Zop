@@ -60,6 +60,21 @@ module.exports = Game = (function() {
 
     colors = ['#F44336', '#9C27B0', '#2196F3', '#4CAF50', '#FF9800']
 
+    dots = []
+    for (var x = 0; x < 6; x++) {
+      for (var y = 0; y < 6; y++) {
+        color = choice(colors)
+        dots.push({
+          color: color,
+          ty: ys + y * dotSize,
+          x: xs + x * dotSize,
+          y: ys + y * dotSize,
+          r: y,
+          c: x
+        })
+      }
+    }
+
     window.gameRestart = function () {
       isSelecting = false
       selected = []
@@ -71,18 +86,18 @@ module.exports = Game = (function() {
       score = 0
       time = 60
 
-      dots = []
       for (var x = 0; x < 6; x++) {
         for (var y = 0; y < 6; y++) {
           color = choice(colors)
-          dots.push({
+          dots[x + y * 6] = {
             color: color,
             ty: ys + y * dotSize,
             x: xs + x * dotSize,
-            y: ys + y * dotSize,
+            y: ys + y * dotSize - (dotSize * x * 2),
             r: y,
-            c: x
-          })
+            c: x,
+            tt: dotSize / 15
+          }
         }
       }
     }
