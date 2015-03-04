@@ -14,14 +14,13 @@ module.exports = class Footer
       $restartBtn: new Button()
       $restartIcon: new Icon()
 
-  render: =>
+  render: ({onRestart}) =>
     {$shareBtn, $restartBtn, $shareIcon, $restartIcon} = @state
 
     z '.z-footer',
       z '.left',
         z $restartBtn,
-          onclick: ->
-            window.location.reload()
+          onclick: onRestart
           text: z 'div',
             {style: paddingRight: '24px'}
             z $shareIcon,

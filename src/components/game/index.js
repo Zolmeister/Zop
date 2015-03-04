@@ -38,6 +38,7 @@ module.exports = Game = (function() {
     window.onresize = function () {
       window.location.reload()
     }
+
     var c = a.getContext('2d')
 
     ctx = c
@@ -53,16 +54,40 @@ module.exports = Game = (function() {
       ys = H / 2 - dotSize * 3
     }
 
+    choice = function(arr) {
+      return arr[Math.floor(Math.random()*arr.length)]
+    }
+
     colors = ['#F44336', '#9C27B0', '#2196F3', '#4CAF50', '#FF9800']
 
-    selected = []
-    isSelecting = false
-    mouseX = 0
-    mouseY = 0
-    squareColor = null
+    window.gameRestart = function () {
+      isSelecting = false
+      selected = []
+      isSelecting = false
+      mouseX = 0
+      mouseY = 0
+      squareColor = null
 
-    score = 0
-    time = 60
+      score = 0
+      time = 60
+
+      dots = []
+      for (var x = 0; x < 6; x++) {
+        for (var y = 0; y < 6; y++) {
+          color = choice(colors)
+          dots.push({
+            color: color,
+            ty: ys + y * dotSize,
+            x: xs + x * dotSize,
+            y: ys + y * dotSize,
+            r: y,
+            c: x
+          })
+        }
+      }
+    }
+
+    window.gameRestart()
 
     state.set({
       timeInterval: setInterval(function () {
@@ -77,25 +102,6 @@ module.exports = Game = (function() {
         }
       }, 1000)
     })
-
-    choice = function(arr) {
-      return arr[Math.floor(Math.random()*arr.length)]
-    }
-
-    dots = []
-    for (var x = 0; x < 6; x++) {
-      for (var y = 0; y < 6; y++) {
-        color = choice(colors)
-        dots.push({
-          color: color,
-          ty: ys + y * dotSize,
-          x: xs + x * dotSize,
-          y: ys + y * dotSize,
-          r: y,
-          c: x
-        })
-      }
-    }
 
     render = function() {
       if (time === 0) {
@@ -327,7 +333,13 @@ module.exports = Game = (function() {
     render()
   }
 
+  Game.prototype.restart = function () {
+    if (window.gameRestart)
+      window.gameRestart()
+  }
+
   Game.prototype.render = function() {
+    var self = this
     $footer = state.$footer
 
     return z('z-game',
@@ -342,7 +354,11 @@ module.exports = Game = (function() {
           height: '100%'
         }
       }),
-      $footer
+      z($footer, {
+        onRestart: function () {
+          self.restart()
+        }
+      })
     )
   };
 

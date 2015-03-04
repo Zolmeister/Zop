@@ -6,10 +6,10 @@ Game = require '../../components/game'
 module.exports = class HomePage
   constructor: ->
     @state = z.state
-      $hello: new Game()
+      $game: new Game()
 
   render: =>
-    {$hello} = @state()
+    {$game} = @state()
 
     z 'div',
-      z $hello
+      z $game
