@@ -98,6 +98,9 @@ module.exports = Game = (function() {
     }
 
     render = function() {
+      if (time === 0) {
+        return
+      }
       ctx.clearRect(0, 0, W, H)
 
       if (squareColor) {
