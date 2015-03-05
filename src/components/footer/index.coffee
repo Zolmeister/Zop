@@ -21,7 +21,7 @@ module.exports = class Footer
       z '.left',
         z $restartBtn,
           onclick: onRestart
-          text: z 'div',
+          $content: z 'div',
             {style: paddingRight: '24px'}
             z $shareIcon,
               icon: 'replay'
@@ -33,7 +33,7 @@ module.exports = class Footer
             Clay('client.share.any', {
               text: 'Come play Zop! http://zop.zolmeister.com'
             })
-          text: z 'div',
+          $content: z 'div',
             {style: paddingLeft: '24px'}
             'share'
             z $shareIcon,
