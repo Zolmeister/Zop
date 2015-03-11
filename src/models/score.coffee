@@ -3,9 +3,12 @@ BEST_KEY = 'score:best'
 class Score
   constructor: ->
     @last = 0
-    @best = if localStorage[BEST_KEY] then \
-              parseInt(localStorage[BEST_KEY]) \
-            else 0
+    try
+      @best = if localStorage[BEST_KEY] then \
+                parseInt(localStorage[BEST_KEY]) \
+              else 0
+    catch e
+      console.log e
 
   save: (score) =>
     @last = score
@@ -18,7 +21,10 @@ class Score
 
   setBest: (score) ->
     @best = score
-    localStorage[BEST_KEY] = score
+    try
+      localStorage[BEST_KEY] = score
+    catch e
+      console.log e
 
   getBest: ->
     @best
