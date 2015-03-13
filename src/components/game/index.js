@@ -44,7 +44,7 @@ module.exports = Game = (function() {
     ctx = c
     W = a.width
     H = a.height
-    dotSize = Math.min(W, H) / 6
+    dotSize = Math.min(W, H) / 7
     xs = W / 2 - dotSize * 3 + dotSize / 2
     ys = H / 2 - dotSize * 3 + dotSize / 2
 
@@ -85,6 +85,7 @@ module.exports = Game = (function() {
 
       score = 0
       time = 60
+      lastPhysicsTime = 0
 
       for (var x = 0; x < 6; x++) {
         for (var y = 0; y < 6; y++) {
@@ -119,6 +120,20 @@ module.exports = Game = (function() {
     })
 
     render = function() {
+      var physicsScale = 1
+      var delta = 1
+      if (lastPhysicsTime) {
+        var now = Date.now()
+        delta = now - lastPhysicsTime
+        // we want 60fps
+        physicsScale = delta / 16
+        // clamp
+        physicsScale = Math.min(physicsScale, 5)
+        lastPhysicsTime = now
+      } else {
+        lastPhysicsTime = Date.now()
+      }
+
       if (time === 0) {
         return
       }
@@ -164,7 +179,7 @@ module.exports = Game = (function() {
 
         if (a.y != a.ty) {
           dir = a.y > a.ty ? -1 : 1
-          a.y += a.tt * dir
+          a.y += a.tt * dir * physicsScale
           a.tt *= a.bdown && !a.bup ? 0.6 : 1.3
 
           if (dir == 1 && a.y >= a.ty) {
@@ -182,7 +197,7 @@ module.exports = Game = (function() {
             a.tt = dotSize / 5
           } else if (a.bdown && !a.bup && a.y == a.ty) {
             a.bup = true
-            a.tt = dotSize / 15
+            a.tt = dotSize / 25
             a.ty += dotSize / 3 * 1.3
           }
 
@@ -199,11 +214,11 @@ module.exports = Game = (function() {
         if (contains(selected, dot) || dot.color == squareColor) {
           ctx.fillStyle = dot.color
           ctx.globalAlpha = 0.5
-          ctx.fillRect(dot.x - dotSize / 3, dot.y - dotSize / 3, dotSize / 1.5, dotSize / 1.5)
+          ctx.fillRect(Math.floor(dot.x - dotSize / 3), Math.floor(dot.y - dotSize / 3), Math.floor(dotSize / 1.5), Math.floor(dotSize / 1.5))
           ctx.globalAlpha = 1
         }
         ctx.fillStyle = dot.color
-        ctx.fillRect(dot.x - dotSize / 4, dot.y - dotSize / 4, dotSize / 2, dotSize / 2)
+        ctx.fillRect(Math.floor(dot.x - dotSize / 4), Math.floor(dot.y - dotSize / 4), Math.floor(dotSize / 2), Math.floor(dotSize / 2))
       }
 
       if (selected.length && isSelecting) {
