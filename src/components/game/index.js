@@ -180,7 +180,7 @@ module.exports = Game = (function() {
         if (a.y != a.ty) {
           dir = a.y > a.ty ? -1 : 1
           a.y += a.tt * dir * physicsScale
-          a.tt *= a.bdown && !a.bup ? 0.6 : 1.3
+          a.tt *= a.bdown && !a.bup ? 0.7 : 1.3
 
           if (dir == 1 && a.y >= a.ty) {
             a.y = a.ty
