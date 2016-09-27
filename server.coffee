@@ -10,4 +10,7 @@ router.get '/js', (req, res) ->
 router.get '/', (req, res) ->
   res.sendfile 'src/index.html'
 
+router.get '/ping', (req, res) ->
+  res.end 'pong'
+
 module.exports = app
